@@ -34,7 +34,13 @@ const DEFAULTS = {
     events: { permission: true, idle: true, question: true, stop: true },
     // Stop 알림은 응답 소요 시간이 이 값(초) 이상일 때만
     stopMinSeconds: 30,
-    title: 'Claude Code',
+    // 이벤트별 토스트 제목
+    labels: {
+      permission: '🔔 승인 요청이 왔습니다',
+      idle: '⌨️ 입력을 기다리고 있습니다',
+      question: '❓ 질문이 왔습니다',
+      stop: '✅ 답변이 끝났습니다',
+    },
     // Stop 알림 본문을 마지막 답변 요약으로 채운다(claude -p 호출, 실패 시 앞부분 잘라서 표시)
     summary: {
       enabled: true,

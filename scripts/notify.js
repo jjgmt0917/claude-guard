@@ -52,7 +52,7 @@ function main() {
     const [root, transcriptPath] = process.argv.slice(3);
     const cfg = loadConfig(root).notify;
     const text = summarize(transcriptPath, cfg.summary) || MESSAGES.stop;
-    showToast(`${cfg.title} · ${path.basename(root)}`, text);
+    showToast(cfg.labels.stop, `[${path.basename(root)}] ${text}`);
     return;
   }
 
@@ -71,7 +71,7 @@ function main() {
     return spawnSummaryWorker(root, payload.transcript_path);
   }
   const detail = kind === 'permission' && payload.message ? payload.message : MESSAGES[kind];
-  showToast(`${cfg.title} · ${path.basename(root)}`, detail);
+  showToast(cfg.labels[kind], `[${path.basename(root)}] ${detail}`);
 }
 
 try {
