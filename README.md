@@ -33,7 +33,7 @@ Node.js가 필요합니다. 알림은 Windows 전용(다른 OS에서는 무시)�
   "notify": {
     "enabled": true,
     "events": { "permission": true, "idle": true, "question": true, "stop": true },
-    "stopMinSeconds": 30
+    "stopMinSeconds": 15
   }
 }
 ```
