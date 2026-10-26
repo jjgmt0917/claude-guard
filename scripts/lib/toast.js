@@ -1,5 +1,8 @@
 'use strict';
-const { spawn } = require('child_process');
+const { spawnSync } = require('child_process');
+
+// 토스트 표시를 기다리는 최대 시간(ms)
+const TOAST_TIMEOUT_MS = 10000;
 
 // Windows PowerShell 5.1 기본 AppId (별도 등록 없이 토스트 표시 가능)
 const TOAST_APP_ID = '{1AC14E77-02E7-4E5D-B744-2EB1AE5198B7}\\WindowsPowerShell\\v1.0\\powershell.exe';
@@ -20,13 +23,12 @@ $toast = New-Object Windows.UI.Notifications.ToastNotification($xml)
 function showToast(title, body) {
   if (process.platform !== 'win32') return;
   const encoded = Buffer.from(TOAST_SCRIPT, 'utf16le').toString('base64');
-  const child = spawn('powershell.exe', ['-NoProfile', '-NonInteractive', '-EncodedCommand', encoded], {
+  // 비동기/분리 실행은 콘솔 창이 뜨거나 토스트가 표시되기 전에 끊겨 동기 실행한다
+  spawnSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-WindowStyle', 'Hidden', '-EncodedCommand', encoded], {
     env: { ...process.env, CG_TITLE: title, CG_BODY: body, CG_APP_ID: TOAST_APP_ID },
-    detached: true,
-    stdio: 'ignore',
     windowsHide: true,
+    timeout: TOAST_TIMEOUT_MS,
   });
-  child.unref();
 }
 
 module.exports = { showToast };
