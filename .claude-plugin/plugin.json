@@ -1,0 +1,8 @@
+{
+  "name": "claude-guard",
+  "version": "0.1.0",
+  "description": "작업 범위 이탈 감지(scope-guard)와 응답 대기 Windows 알림(notify)을 제공하는 훅 모음",
+  "author": { "name": "jjgmt0917" },
+  "license": "MIT",
+  "keywords": ["hooks", "guard", "notification", "windows"]
+}

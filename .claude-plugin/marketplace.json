@@ -1,0 +1,11 @@
+{
+  "name": "claude-guard",
+  "owner": { "name": "jjgmt0917" },
+  "plugins": [
+    {
+      "name": "claude-guard",
+      "source": "./",
+      "description": "작업 범위 이탈 감지(scope-guard)와 응답 대기 Windows 알림(notify)"
+    }
+  ]
+}
