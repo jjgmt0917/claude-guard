@@ -33,7 +33,7 @@ const DEFAULTS = {
     enabled: true,
     events: { permission: true, idle: true, question: true, stop: true },
     // Stop 알림은 응답 소요 시간이 이 값(초) 이상일 때만
-    stopMinSeconds: 30,
+    stopMinSeconds: 15,
     // 이벤트별 토스트 제목
     labels: {
       permission: '🔔 승인 요청이 왔습니다',
